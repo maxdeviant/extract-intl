@@ -8,10 +8,11 @@ chai.use(chaiAsPromised);
 describe('extract-intl', () => {
   describe('FormattedMessage', () => {
     it('can extract from <FormattedMessage />', () => {
-      expect(extractIntl(path.join(__dirname, '/fixtures/intl.jsx'))).to.eventually.equal({});
-      // const messages = extractIntl(path.join(__dirname, '/fixtures/intl.jsx'));
-      //
-      // console.log(messages);
+      const fixturesPath = path.join(__dirname, '/fixtures/intl.jsx');
+
+      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
+        'list_item.title': 'Item: {primaryText}'
+      });
     });
   });
 

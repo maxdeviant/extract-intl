@@ -10,9 +10,7 @@ export function extractIntl(files) {
     const fileContents = files.map(readFile);
 
     fileContents[0].then(data => {
-      parse(data);
-
-      return resolve({});
+      return resolve(parse(data));
     }).catch(err => {
       return reject(err);
     });

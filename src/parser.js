@@ -1,10 +1,8 @@
 export function parse(contents) {
   const componentMessages = parseComponents(contents);
-  const functionMessages = parseFunctions(contents);
+  // const functionMessages = parseFunctions(contents);
 
-  const messages = Object.assign({}, componentMessages, functionMessages);
-
-  console.log(messages)
+  const messages = Object.assign({}, componentMessages);
 
   return messages;
 }

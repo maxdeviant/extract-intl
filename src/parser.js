@@ -13,6 +13,10 @@ function parseComponents(contents) {
   const componentPattern = new RegExp('<FormattedMessage(.|\n)*\/>', 'gm');
   const matches = contents.match(componentPattern);
 
+  if (!matches) {
+    return messages;
+  }
+
   matches.forEach(match => {
     const messageDescriptor = extractComponentMessageDescriptor(match);
 
@@ -80,6 +84,10 @@ function parseFunctions(contents) {
 
   const functionPattern = new RegExp('formatMessage\({(.|\n)*}\)', 'gm');
   const matches = contents.match(functionPattern);
+
+  if (!matches) {
+    return messages;
+  }
 
   matches.forEach(match => {
     const messageDescriptor = extractFunctionMessageDescriptor(match);

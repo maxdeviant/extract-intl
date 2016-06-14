@@ -7,10 +7,14 @@ export function extractIntl(files) {
       files = [files];
     }
 
-    const fileContents = files.map(readFile);
-
-    fileContents[0].then(data => {
-      return resolve(parse(data));
+    return Promise.all(
+      files.map(readFile)
+    ).then(fileContents => {
+      return resolve(
+        fileContents
+          .map(parse)
+          .reduce((accumulator, messages) => Object.assign(accumulator, messages), {})
+      );
     }).catch(err => {
       return reject(err);
     });

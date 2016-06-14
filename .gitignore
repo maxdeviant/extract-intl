@@ -1,4 +1,11 @@
 #
+# Extract Intl
+#
+
+# Babel output
+/lib/
+
+#
 # Node
 #
 

@@ -1,3 +1,5 @@
+import { extractIntl } from './lib';
+
 const program = require('commander');
 
 program
@@ -7,4 +9,8 @@ program
 
 const files = program.args;
 
-console.log(files)
+extractIntl(files).then(messages => {
+  console.log(messages);
+}).catch(err => {
+  console.log(err);
+});

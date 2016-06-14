@@ -7,7 +7,7 @@ chai.use(chaiAsPromised);
 
 describe('extract-intl', () => {
   describe('FormattedMessage', () => {
-    it('can extract from <FormattedMessage />', () => {
+    it('should extract a message', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/simple.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
@@ -19,7 +19,7 @@ describe('extract-intl', () => {
       });
     });
 
-    it('can extract values from <FormattedMessage />', () => {
+    it('should extract values', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/values.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
@@ -30,10 +30,27 @@ describe('extract-intl', () => {
         }
       });
     });
+
+    it('should extract multiple messages', () => {
+      const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/multiple.jsx');
+
+      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
+        'list_item.title': {
+          defaultMessage: 'My List Item',
+          values: {},
+          description: ''
+        },
+        'list_item.body': {
+          defaultMessage: 'This is my body text.',
+          values: {},
+          description: ''
+        }
+      });
+    });
   });
 
   describe('formatMessage', () => {
-    it('can extract from formatMessage()', () => {
+    it('should extract a message', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/simple.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
@@ -45,7 +62,7 @@ describe('extract-intl', () => {
       });
     });
 
-    it('can extract values from formatMessage()', () => {
+    it('should extract values', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/values.jsx');
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         'footer.text': {
@@ -53,6 +70,33 @@ describe('extract-intl', () => {
           values: {},
           description: ''
         }
+      });
+    });
+
+    it('should extract multiple messages', () => {
+      const fixturesPath = path.join(__dirname, '/fixtures/format-message/multiple.jsx');
+      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
+        'footer.title': {
+          defaultMessage: 'Why does a footer need a title?',
+          values: {},
+          description: ''
+        },
+        'footer.text': {
+          defaultMessage: 'Copyright (c) 2016',
+          values: {},
+          description: ''
+        }
+      });
+    });
+
+    xit('should extract from multiple files', () => {
+      const fixturesPaths = [
+        path.join(__dirname, '/fixtures/format-message/simple.jsx'),
+        path.join(__dirname, '/fixtures/format-message/values.jsx'),
+      ];
+
+      return expect(extractIntl(fixturesPaths)).to.eventually.deep.equal({
+
       });
     });
   });

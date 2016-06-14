@@ -10,7 +10,7 @@ export function parse(contents) {
 function parseComponents(contents) {
   const messages = {};
 
-  const componentPattern = /<FormattedMessage(.|\n)*\/>/gm;
+  const componentPattern = /<FormattedMessage(.|\n)*?\/>/gm;
   const matches = contents.match(componentPattern);
 
   if (!matches) {
@@ -87,7 +87,7 @@ function extractComponentDescription(componentText) {
 function parseFunctions(contents) {
   const messages = {};
 
-  const functionPattern = /formatMessage\({\n?((?:.|\n)*)}\)/gm;
+  const functionPattern = /formatMessage\({\n?((?:.|\n)*?)}\)/gm;
   const matches = contents.match(functionPattern);
 
   if (!matches) {

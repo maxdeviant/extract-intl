@@ -10,6 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/maxdeviant/extract-intl.git"
   },
+  "keywords": [
+    "react",
+    "react-intl",
+    "internationalization",
+    "i18n",
+    "localization",
+    "l10n"
+  ],
   "author": "Marshall Bowers <elliott.codes@gmail.com>",
   "license": "MIT",
   "bugs": {

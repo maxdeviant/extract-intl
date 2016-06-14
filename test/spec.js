@@ -47,6 +47,31 @@ describe('extract-intl', () => {
         }
       });
     });
+
+    it('should extract from multiple files', () => {
+      const fixturesPaths = [
+        path.join(__dirname, '/fixtures/formatted-message/a.jsx'),
+        path.join(__dirname, '/fixtures/formatted-message/b.jsx'),
+      ];
+
+      return expect(extractIntl(fixturesPaths)).to.eventually.deep.equal({
+        'component_a.title': {
+          defaultMessage: 'Component A',
+          description: '',
+          values: {}
+        },
+        'component_a.body_text': {
+          defaultMessage: 'Hello there!',
+          description: '',
+          values: {}
+        },
+        'component_b.title': {
+          defaultMessage: 'Component B',
+          description: '',
+          values: {}
+        }
+      });
+    });
   });
 
   describe('formatMessage', () => {
@@ -89,14 +114,28 @@ describe('extract-intl', () => {
       });
     });
 
-    xit('should extract from multiple files', () => {
+    it('should extract from multiple files', () => {
       const fixturesPaths = [
-        path.join(__dirname, '/fixtures/format-message/simple.jsx'),
-        path.join(__dirname, '/fixtures/format-message/values.jsx'),
+        path.join(__dirname, '/fixtures/format-message/a.jsx'),
+        path.join(__dirname, '/fixtures/format-message/b.jsx'),
       ];
 
       return expect(extractIntl(fixturesPaths)).to.eventually.deep.equal({
-
+        'component_a.title': {
+          defaultMessage: 'Component A',
+          description: '',
+          values: {}
+        },
+        'component_a.body_text': {
+          defaultMessage: 'Hello there!',
+          description: '',
+          values: {}
+        },
+        'component_b.title': {
+          defaultMessage: 'Component B',
+          description: '',
+          values: {}
+        }
       });
     });
   });

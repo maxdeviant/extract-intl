@@ -11,7 +11,11 @@ describe('extract-intl', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/simple.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'list_item.title': 'My List Item'
+        'list_item.title': {
+          defaultMessage: 'My List Item',
+          values: {},
+          description: ''
+        }
       });
     });
   });
@@ -20,8 +24,13 @@ describe('extract-intl', () => {
     it('can extract from formatMessage()', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/simple.jsx');
 
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
 
+      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
+        'footer.text': {
+          defaultMessage: 'Copyright (c) 2016',
+          values: {},
+          description: ''
+        }
       });
     });
   });

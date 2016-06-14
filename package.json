@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/maxdeviant/extract-intl#readme",
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "commander": "^2.9.0",
     "jison": "^0.4.17"
   },

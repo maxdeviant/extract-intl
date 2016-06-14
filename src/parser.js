@@ -10,7 +10,7 @@ export function parse(contents) {
 function parseComponents(contents) {
   const messages = {};
 
-  const componentPattern = new RegExp('<FormattedMessage(.|\n)*\/>', 'gm');
+  const componentPattern = /<FormattedMessage(.|\n)*\/>/gm;
   const matches = contents.match(componentPattern);
 
   if (!matches) {
@@ -20,7 +20,12 @@ function parseComponents(contents) {
   matches.forEach(match => {
     const messageDescriptor = extractComponentMessageDescriptor(match);
 
-    messages[messageDescriptor.id] = messageDescriptor.defaultMessage;
+    const {
+      id: messageId,
+      ...message
+    } = messageDescriptor;
+
+    messages[messageId] = message;
   });
 
   return messages;
@@ -37,7 +42,7 @@ function extractComponentMessageDescriptor(componentText) {
 
 function extractComponentID(componentText) {
   try {
-    const pattern = new RegExp(`id='(.*)'`, 'gm');
+    const pattern = /id='(.*)'/gm;
     const match = pattern.exec(componentText);
 
     return match[1];
@@ -48,7 +53,7 @@ function extractComponentID(componentText) {
 
 function extractComponentDefaultMessage(componentText) {
   try {
-    const pattern = new RegExp(`defaultMessage='(.*)'`, 'gm');
+    const pattern = /defaultMessage='(.*)'/gm;
     const match = pattern.exec(componentText);
 
     return match[1];
@@ -59,18 +64,18 @@ function extractComponentDefaultMessage(componentText) {
 
 function extractComponentValues(componentText) {
   try {
-    const pattern = new RegExp(`values={{(.*)}}`, 'gm');
+    const pattern = /values={{(.*)}}/gm;
     const match = pattern.exec(componentText);
 
     return match[1];
   } catch (err) {
-    return '';
+    return {};
   }
 }
 
 function extractComponentDescription(componentText) {
   try {
-    const pattern = new RegExp(`description='(.*)'`, 'gm');
+    const pattern = /description='(.*)'/gm;
     const match = pattern.exec(componentText);
 
     return match[1];
@@ -82,7 +87,7 @@ function extractComponentDescription(componentText) {
 function parseFunctions(contents) {
   const messages = {};
 
-  const functionPattern = new RegExp('formatMessage\({(.|\n)*}\)', 'gm');
+  const functionPattern = /formatMessage\({\n?((?:.|\n)*)}\)/gm;
   const matches = contents.match(functionPattern);
 
   if (!matches) {
@@ -92,7 +97,12 @@ function parseFunctions(contents) {
   matches.forEach(match => {
     const messageDescriptor = extractFunctionMessageDescriptor(match);
 
-    messages[messageDescriptor.id] = messageDescriptor.defaultMessage;
+    const {
+      id: messageId,
+      ...message
+    } = messageDescriptor;
+
+    messages[messageId] = message;
   });
 
   return messages;
@@ -109,7 +119,7 @@ function extractFunctionMessageDescriptor(componentText) {
 
 function extractFunctionID(componentText) {
   try {
-    const pattern = new RegExp(`id:\s?'(.*)'`, 'gm');
+    const pattern = /id:\s?'(.*)'/gm;
     const match = pattern.exec(componentText);
 
     return match[1];
@@ -120,7 +130,7 @@ function extractFunctionID(componentText) {
 
 function extractFunctionDefaultMessage(componentText) {
   try {
-    const pattern = new RegExp(`defaultMessage:\s?'(.*)'`, 'gm');
+    const pattern = /defaultMessage:\s?'(.*)'/gm;
     const match = pattern.exec(componentText);
 
     return match[1];
@@ -131,18 +141,18 @@ function extractFunctionDefaultMessage(componentText) {
 
 function extractFunctionValues(componentText) {
   try {
-    const pattern = new RegExp(`values:\s?{(.*)}`, 'gm');
+    const pattern = /values:\s?{(.*)}/gm;
     const match = pattern.exec(componentText);
 
     return match[1];
   } catch (err) {
-    return '';
+    return {};
   }
 }
 
 function extractFunctionDescription(componentText) {
   try {
-    const pattern = new RegExp(`description:\s?'(.*)'`, 'gm');
+    const pattern = /description:\s?'(.*)'/gm;
     const match = pattern.exec(componentText);
 
     return match[1];

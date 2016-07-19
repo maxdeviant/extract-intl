@@ -48,7 +48,7 @@ function extractFunctionMessageDescriptor(functionText) {
  */
 function extractFunctionID(functionText) {
   try {
-    const pattern = /id:\s?'(.*)'/gm;
+    const pattern = /id:\s?'([^']*)'/gm;
     const match = pattern.exec(functionText);
 
     return match[1];

@@ -138,5 +138,34 @@ describe('extract-intl', () => {
         }
       });
     });
+
+    it('should handle properties in varying orders', () => {
+      const fixturesPath = path.join(__dirname, '/fixtures/format-message/order.jsx');
+
+      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
+        'user_profile.title': {
+          defaultMessage: 'UserProfile',
+          description: 'The title for the user profile.',
+          values: {}
+        }
+      });
+    });
+
+    it('should handle weird formatting', () => {
+      const fixturesPath = path.join(__dirname, '/fixtures/format-message/formatting.jsx');
+
+      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
+        'footer.text': {
+          defaultMessage: 'Copyright (c) 2016',
+          description: '',
+          values: {}
+        },
+        'footer.copyright': {
+          defaultMessage: 'ALL RIGHTS RESERVED',
+          description: '',
+          values: {}
+        }
+      })
+    });
   });
 });

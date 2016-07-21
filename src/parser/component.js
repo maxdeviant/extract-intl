@@ -6,7 +6,7 @@
 export function parseComponents(contents) {
   const messages = {};
 
-  const componentPattern = /<FormattedMessage(.|\n)*?\/>/gm;
+  const componentPattern = /<FormattedMessage(.|\r?\n)*?\/>/gm;
   const matches = contents.match(componentPattern);
 
   if (!matches) {

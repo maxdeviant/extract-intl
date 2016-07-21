@@ -6,7 +6,7 @@
 export function parseFunctions(contents) {
   const messages = {};
 
-  const functionPattern = /formatMessage\({\n?((?:.|\n)*?)}\)/gm;
+  const functionPattern = /formatMessage\({\r?\n?((?:.|\r?\n)*?)}\)/gm;
   const matches = contents.match(functionPattern);
 
   if (!matches) {

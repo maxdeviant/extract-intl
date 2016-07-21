@@ -48,7 +48,7 @@ function extractComponentMessageDescriptor(componentText) {
  */
 function extractComponentID(componentText) {
   try {
-    const pattern = /id='(.*)'/gm;
+    const pattern = /id=\{?(?:'|"|`)([^'"`]*)(?:'|"|`)\}?/gm;
     const match = pattern.exec(componentText);
 
     return match[1];
@@ -64,7 +64,7 @@ function extractComponentID(componentText) {
  */
 function extractComponentDefaultMessage(componentText) {
   try {
-    const pattern = /defaultMessage='(.*)'/gm;
+    const pattern = /defaultMessage=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm;
     const match = pattern.exec(componentText);
 
     return match[1];
@@ -96,7 +96,7 @@ function extractComponentValues(componentText) {
  */
 function extractComponentDescription(componentText) {
   try {
-    const pattern = /description='(.*)'/gm;
+    const pattern = /description=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm;
     const match = pattern.exec(componentText);
 
     return match[1];

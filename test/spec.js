@@ -151,6 +151,28 @@ describe('extract-intl', () => {
       });
     });
 
+    it('should handle other string literal formats', () => {
+      const fixturesPath = path.join(__dirname, '/fixtures/format-message/string-literals.jsx');
+
+      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
+        'footer.title': {
+          defaultMessage: `This footer is bangin'`,
+          description: '',
+          values: {}
+        },
+        'footer.text': {
+          defaultMessage: 'Copyright (c) 2016',
+          description: '',
+          values: {}
+        },
+        'footer.copyright': {
+          defaultMessage: 'ALL RIGHTS RESERVED',
+          description: '',
+          values: {}
+        }
+      });
+    });
+
     it('should handle weird formatting', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/formatting.jsx');
 
@@ -165,7 +187,7 @@ describe('extract-intl', () => {
           description: '',
           values: {}
         }
-      })
+      });
     });
   });
 });

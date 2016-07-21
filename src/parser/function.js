@@ -48,7 +48,7 @@ function extractFunctionMessageDescriptor(functionText) {
  */
 function extractFunctionID(functionText) {
   try {
-    const pattern = /id:\s?'([^']*)'/gm;
+    const pattern = /id:\s?(?:'|"|`)([^'"`]*)(?:'|"|`)/gm;
     const match = pattern.exec(functionText);
 
     return match[1];
@@ -64,7 +64,7 @@ function extractFunctionID(functionText) {
  */
 function extractFunctionDefaultMessage(functionText) {
   try {
-    const pattern = /defaultMessage:\s?'(.*)'/gm;
+    const pattern = /defaultMessage:\s?(?:'|"|`)(.*)(?:'|"|`)/gm;
     const match = pattern.exec(functionText);
 
     return match[1];
@@ -95,7 +95,7 @@ function extractFunctionValues(functionText) {
  */
 function extractFunctionDescription(functionText) {
   try {
-    const pattern = /description:\s?'(.*)'/gm;
+    const pattern = /description:\s?(?:'|"|`)(.*)(?:'|"|`)/gm;
     const match = pattern.exec(functionText);
 
     return match[1];

@@ -1,3 +1,5 @@
+import EOL from '../eol';
+
 /**
  * Returns an object containing the message descriptors from the `<FormattedMessage />` component instance in the file contents.
  *
@@ -80,7 +82,7 @@ function extractComponentDefaultMessage(componentText) {
  */
 function sanitizeDefaultMessage(defaultMessage) {
   return defaultMessage
-    .split('\r\n')
+    .split(EOL)
     .map(part => part.trim())
     .filter(part => !!part)
     .join(' ');

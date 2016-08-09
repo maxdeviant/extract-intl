@@ -21,10 +21,10 @@ export function parseComponents(contents) {
       ...message
     } = messageDescriptor;
 
-    messages[messageId] = message;
+messages[messageId] = message;
   });
 
-  return messages;
+return messages;
 }
 
 /**
@@ -64,13 +64,26 @@ function extractComponentID(componentText) {
  */
 function extractComponentDefaultMessage(componentText) {
   try {
-    const pattern = /defaultMessage=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm;
+    const pattern = /defaultMessage=\{?(?:\s)*(?:'|"|`)((?:.|\r?\n)*)(?:'|"|`)\}?/gm;
     const match = pattern.exec(componentText);
 
-    return match[1];
+    return sanitizeDefaultMessage(match[1]);
   } catch (err) {
     return '';
   }
+}
+
+/**
+ * Returns the default message after it has been sanitized.
+ *
+ * @param defaultMessage The default message to sanitize.
+ */
+function sanitizeDefaultMessage(defaultMessage) {
+  return defaultMessage
+    .split('\r\n')
+    .map(part => part.trim())
+    .filter(part => !!part)
+    .join(' ');
 }
 
 /**

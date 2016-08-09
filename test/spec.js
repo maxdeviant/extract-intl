@@ -82,6 +82,11 @@ describe('extract-intl', () => {
           description: '',
           values: {}
         },
+        'footer.subtitle': {
+          defaultMessage: 'You have {messageCount, plural, one {# new message} other {# new messages} }!',
+          description: '',
+          values: {}
+        },
         'footer.copyright': {
           defaultMessage: 'Copyright (c) 2016',
           description: '',

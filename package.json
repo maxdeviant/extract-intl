@@ -1,6 +1,6 @@
 {
   "name": "extract-intl",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Extract translatable strings from React Intl.",
   "main": "index.js",
   "scripts": {

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.0] - 2017-03-16
+### Added
+- Remove newline detection in `<FormattedMessage />`.
+
 ## [1.0.0] - 2017-03-16
 ### Added
 - Return the list of duplicated message IDs.
@@ -26,6 +30,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release.
 
+[1.0.0]: https://github.com/maxdeviant/extract-intl/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/maxdeviant/extract-intl/compare/v0.0.4...v1.0.0
 [0.0.4]: https://github.com/maxdeviant/extract-intl/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/maxdeviant/extract-intl/compare/v0.0.2...v0.0.3

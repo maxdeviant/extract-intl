@@ -96,7 +96,7 @@ describe('extract-intl', () => {
             values: {}
           },
           'footer.subtitle': {
-            defaultMessage: 'You have {messageCount, plural, one {# new message} other {# new messages} }!',
+            defaultMessage: 'You have {messageCount, plural, one {# new message} other {# new messages}}!',
             description: '',
             values: {}
           },

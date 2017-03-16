@@ -12,14 +12,7 @@ export default class Footer extends React.Component {
         </h1>
         <FormattedMessage
           id='footer.subtitle'
-          defaultMessage={
-            `
-            You have {messageCount, plural,
-              one {# new message}
-              other {# new messages}
-            }!
-            `
-          } />
+          defaultMessage={`You have {messageCount, plural, one {# new message} other {# new messages}}!`} />
         <FormattedMessage
           id="footer.copyright"
           defaultMessage="Copyright (c) 2016" />

@@ -53,7 +53,7 @@ function extractComponentID(componentText) {
  */
 function extractComponentDefaultMessage(componentText) {
   try {
-    const pattern = /defaultMessage=\{?(?:\s)*(?:'|"|`)((?:.|\r?\n)*)(?:'|"|`)\}?/gm;
+    const pattern = /defaultMessage=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm;
     const match = pattern.exec(componentText);
 
     return sanitizeDefaultMessage(match[1]);

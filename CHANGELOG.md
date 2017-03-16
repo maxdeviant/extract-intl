@@ -30,7 +30,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release.
 
-[1.0.0]: https://github.com/maxdeviant/extract-intl/compare/v1.0.0...v2.0.0
+[2.0.0]: https://github.com/maxdeviant/extract-intl/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/maxdeviant/extract-intl/compare/v0.0.4...v1.0.0
 [0.0.4]: https://github.com/maxdeviant/extract-intl/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/maxdeviant/extract-intl/compare/v0.0.2...v0.0.3

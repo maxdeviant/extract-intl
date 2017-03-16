@@ -7,10 +7,26 @@ import { parseFunctions } from './function';
  * @param contents The file contents to search.
  */
 export function parse(contents) {
-  const componentMessages = parseComponents(contents);
-  const functionMessages = parseFunctions(contents);
+  const messageDescriptors = [
+    ...parseComponents(contents),
+    ...parseFunctions(contents)
+  ];
 
-  const messages = Object.assign({}, componentMessages, functionMessages);
+  const messages = {};
+  const duplicates = [];
+  messageDescriptors.forEach(messageDescriptor => {
+    const {
+      id: messageId,
+      ...message
+    } = messageDescriptor;
+    if (messageId in messages) {
+      duplicates.push(messageId);
+    }
+    messages[messageId] = message;
+  });
 
-  return messages;
+  return {
+    messages,
+    duplicates
+  };
 }

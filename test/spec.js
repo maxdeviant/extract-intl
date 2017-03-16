@@ -11,11 +11,14 @@ describe('extract-intl', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/simple.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'list_item.title': {
-          defaultMessage: 'My List Item',
-          values: {},
-          description: ''
-        }
+        messages: {
+          'list_item.title': {
+            defaultMessage: 'My List Item',
+            values: {},
+            description: ''
+          }
+        },
+        duplicates: []
       });
     });
 
@@ -23,11 +26,14 @@ describe('extract-intl', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/values.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'list_item.title': {
-          defaultMessage: 'My {adjective} List Item',
-          values: {},
-          description: ''
-        }
+        messages: {
+          'list_item.title': {
+            defaultMessage: 'My {adjective} List Item',
+            values: {},
+            description: ''
+          }
+        },
+        duplicates: []
       });
     });
 
@@ -35,16 +41,19 @@ describe('extract-intl', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/multiple.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'list_item.title': {
-          defaultMessage: 'My List Item',
-          values: {},
-          description: ''
+        messages: {
+          'list_item.title': {
+            defaultMessage: 'My List Item',
+            values: {},
+            description: ''
+          },
+          'list_item.body': {
+            defaultMessage: 'This is my body text.',
+            values: {},
+            description: ''
+          }
         },
-        'list_item.body': {
-          defaultMessage: 'This is my body text.',
-          values: {},
-          description: ''
-        }
+        duplicates: []
       });
     });
 
@@ -55,21 +64,24 @@ describe('extract-intl', () => {
       ];
 
       return expect(extractIntl(fixturesPaths)).to.eventually.deep.equal({
-        'component_a.title': {
-          defaultMessage: 'Component A',
-          description: '',
-          values: {}
+        messages: {
+          'component_a.title': {
+            defaultMessage: 'Component A',
+            description: '',
+            values: {}
+          },
+          'component_a.body_text': {
+            defaultMessage: 'Hello there!',
+            description: '',
+            values: {}
+          },
+          'component_b.title': {
+            defaultMessage: 'Component B',
+            description: '',
+            values: {}
+          }
         },
-        'component_a.body_text': {
-          defaultMessage: 'Hello there!',
-          description: '',
-          values: {}
-        },
-        'component_b.title': {
-          defaultMessage: 'Component B',
-          description: '',
-          values: {}
-        }
+        duplicates: []
       });
     });
 
@@ -77,21 +89,24 @@ describe('extract-intl', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/string-literals.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'footer.title': {
-          defaultMessage: `This footer is bangin'`,
-          description: '',
-          values: {}
+        messages: {
+          'footer.title': {
+            defaultMessage: `This footer is bangin'`,
+            description: '',
+            values: {}
+          },
+          'footer.subtitle': {
+            defaultMessage: 'You have {messageCount, plural, one {# new message} other {# new messages} }!',
+            description: '',
+            values: {}
+          },
+          'footer.copyright': {
+            defaultMessage: 'Copyright (c) 2016',
+            description: '',
+            values: {}
+          }
         },
-        'footer.subtitle': {
-          defaultMessage: 'You have {messageCount, plural, one {# new message} other {# new messages} }!',
-          description: '',
-          values: {}
-        },
-        'footer.copyright': {
-          defaultMessage: 'Copyright (c) 2016',
-          description: '',
-          values: {}
-        }
+        duplicates: []
       });
     });
   });
@@ -101,38 +116,47 @@ describe('extract-intl', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/simple.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'footer.text': {
-          defaultMessage: 'Copyright (c) 2016',
-          values: {},
-          description: ''
-        }
+        messages: {
+          'footer.text': {
+            defaultMessage: 'Copyright (c) 2016',
+            values: {},
+            description: ''
+          }
+        },
+        duplicates: []
       });
     });
 
     it('should extract values', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/values.jsx');
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'footer.text': {
-          defaultMessage: 'Copyright (c) {year}',
-          values: {},
-          description: ''
-        }
+        messages: {
+          'footer.text': {
+            defaultMessage: 'Copyright (c) {year}',
+            values: {},
+            description: ''
+          }
+        },
+        duplicates: []
       });
     });
 
     it('should extract multiple messages', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/multiple.jsx');
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'footer.title': {
-          defaultMessage: 'Why does a footer need a title?',
-          values: {},
-          description: ''
+        messages: {
+          'footer.title': {
+            defaultMessage: 'Why does a footer need a title?',
+            values: {},
+            description: ''
+          },
+          'footer.text': {
+            defaultMessage: 'Copyright (c) 2016',
+            values: {},
+            description: ''
+          }
         },
-        'footer.text': {
-          defaultMessage: 'Copyright (c) 2016',
-          values: {},
-          description: ''
-        }
+        duplicates: []
       });
     });
 
@@ -143,21 +167,24 @@ describe('extract-intl', () => {
       ];
 
       return expect(extractIntl(fixturesPaths)).to.eventually.deep.equal({
-        'component_a.title': {
-          defaultMessage: 'Component A',
-          description: '',
-          values: {}
+        messages: {
+          'component_a.title': {
+            defaultMessage: 'Component A',
+            description: '',
+            values: {}
+          },
+          'component_a.body_text': {
+            defaultMessage: 'Hello there!',
+            description: '',
+            values: {}
+          },
+          'component_b.title': {
+            defaultMessage: 'Component B',
+            description: '',
+            values: {}
+          }
         },
-        'component_a.body_text': {
-          defaultMessage: 'Hello there!',
-          description: '',
-          values: {}
-        },
-        'component_b.title': {
-          defaultMessage: 'Component B',
-          description: '',
-          values: {}
-        }
+        duplicates: []
       });
     });
 
@@ -165,11 +192,14 @@ describe('extract-intl', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/order.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'user_profile.title': {
-          defaultMessage: 'UserProfile',
-          description: 'The title for the user profile.',
-          values: {}
-        }
+        messages: {
+          'user_profile.title': {
+            defaultMessage: 'UserProfile',
+            description: 'The title for the user profile.',
+            values: {}
+          }
+        },
+        duplicates: []
       });
     });
 
@@ -177,21 +207,24 @@ describe('extract-intl', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/string-literals.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'footer.title': {
-          defaultMessage: `This footer is bangin'`,
-          description: '',
-          values: {}
+        messages: {
+          'footer.title': {
+            defaultMessage: `This footer is bangin'`,
+            description: '',
+            values: {}
+          },
+          'footer.text': {
+            defaultMessage: 'Copyright (c) 2016',
+            description: '',
+            values: {}
+          },
+          'footer.copyright': {
+            defaultMessage: 'ALL RIGHTS RESERVED',
+            description: '',
+            values: {}
+          }
         },
-        'footer.text': {
-          defaultMessage: 'Copyright (c) 2016',
-          description: '',
-          values: {}
-        },
-        'footer.copyright': {
-          defaultMessage: 'ALL RIGHTS RESERVED',
-          description: '',
-          values: {}
-        }
+        duplicates: []
       });
     });
 
@@ -199,16 +232,19 @@ describe('extract-intl', () => {
       const fixturesPath = path.join(__dirname, '/fixtures/format-message/formatting.jsx');
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        'footer.text': {
-          defaultMessage: 'Copyright (c) 2016',
-          description: '',
-          values: {}
+        messages: {
+          'footer.text': {
+            defaultMessage: 'Copyright (c) 2016',
+            description: '',
+            values: {}
+          },
+          'footer.copyright': {
+            defaultMessage: 'ALL RIGHTS RESERVED',
+            description: '',
+            values: {}
+          }
         },
-        'footer.copyright': {
-          defaultMessage: 'ALL RIGHTS RESERVED',
-          description: '',
-          values: {}
-        }
+        duplicates: []
       });
     });
   });

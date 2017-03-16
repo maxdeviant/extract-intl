@@ -13,7 +13,19 @@ export function extractIntl(files) {
       return resolve(
         fileContents
           .map(parse)
-          .reduce((accumulator, messages) => Object.assign(accumulator, messages), {})
+          .reduce((accumulator, { messages, duplicates }) => ({
+            messages: {
+              ...accumulator.messages,
+              ...messages
+            },
+            duplicates: [
+              ...accumulator.duplicates,
+              ...duplicates
+            ]
+          }), {
+            messages: {},
+            duplicates: []
+          })
       );
     }).catch(err => {
       return reject(err);

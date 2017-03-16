@@ -1,30 +1,17 @@
 /**
- * Returns an object containing the message descriptors from the `formatMessage` function calls in the file contents.
+ * Returns an array containing the message descriptors from the `formatMessage` function calls in the file contents.
  *
  * @param contents The file contents to search.
  */
 export function parseFunctions(contents) {
-  const messages = {};
-
   const functionPattern = /formatMessage\({\r?\n?((?:.|\r?\n)*?)}\)/gm;
   const matches = contents.match(functionPattern);
 
   if (!matches) {
-    return messages;
+    return [];
   }
 
-  matches.forEach(match => {
-    const messageDescriptor = extractFunctionMessageDescriptor(match);
-
-    const {
-      id: messageId,
-      ...message
-    } = messageDescriptor;
-
-    messages[messageId] = message;
-  });
-
-  return messages;
+  return matches.map(extractFunctionMessageDescriptor);
 }
 
 /**

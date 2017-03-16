@@ -1,32 +1,19 @@
 import EOL from '../eol';
 
 /**
- * Returns an object containing the message descriptors from the `<FormattedMessage />` component instance in the file contents.
+ * Returns an array containing the message descriptors from the `<FormattedMessage />` component instance in the file contents.
  *
  * @param contents The file contents to search.
  */
 export function parseComponents(contents) {
-  const messages = {};
-
   const componentPattern = /<FormattedMessage(.|\r?\n)*?\/>/gm;
   const matches = contents.match(componentPattern);
 
   if (!matches) {
-    return messages;
+    return [];
   }
 
-  matches.forEach(match => {
-    const messageDescriptor = extractComponentMessageDescriptor(match);
-
-    const {
-      id: messageId,
-      ...message
-    } = messageDescriptor;
-
-messages[messageId] = message;
-  });
-
-return messages;
+  return matches.map(extractComponentMessageDescriptor);
 }
 
 /**

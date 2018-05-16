@@ -4,9 +4,10 @@
   "description": "Extract translatable strings from React Intl.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register --recursive",
+    "prepublish": "npm run build",
+    "format": "prettier --write \"src/**/*.js\"",
     "build": "babel src -d lib",
-    "prepublish": "npm run build"
+    "test": "mocha --compilers js:babel-register --recursive"
   },
   "repository": {
     "type": "git",
@@ -36,7 +37,8 @@
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "prettier": "^1.12.1"
   },
   "files": [
     "lib/"

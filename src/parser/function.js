@@ -4,14 +4,14 @@
  * @param contents The file contents to search.
  */
 export function parseFunctions(contents) {
-  const functionPattern = /formatMessage\({\r?\n?((?:.|\r?\n)*?)}\)/gm;
-  const matches = contents.match(functionPattern);
+  const functionPattern = /formatMessage\({\r?\n?((?:.|\r?\n)*?)}\)/gm
+  const matches = contents.match(functionPattern)
 
   if (!matches) {
-    return [];
+    return []
   }
 
-  return matches.map(extractFunctionMessageDescriptor);
+  return matches.map(extractFunctionMessageDescriptor)
 }
 
 /**
@@ -25,7 +25,7 @@ function extractFunctionMessageDescriptor(functionText) {
     defaultMessage: extractFunctionDefaultMessage(functionText),
     values: extractFunctionValues(functionText),
     description: extractFunctionDescription(functionText)
-  };
+  }
 }
 
 /**
@@ -35,12 +35,12 @@ function extractFunctionMessageDescriptor(functionText) {
  */
 function extractFunctionID(functionText) {
   try {
-    const pattern = /id:\s?(?:'|"|`)([^'"`]*)(?:'|"|`)/gm;
-    const match = pattern.exec(functionText);
+    const pattern = /id:\s?(?:'|"|`)([^'"`]*)(?:'|"|`)/gm
+    const match = pattern.exec(functionText)
 
-    return match[1];
+    return match[1]
   } catch (err) {
-    return '';
+    return ''
   }
 }
 
@@ -51,12 +51,12 @@ function extractFunctionID(functionText) {
  */
 function extractFunctionDefaultMessage(functionText) {
   try {
-    const pattern = /defaultMessage:\s?(?:'|"|`)(.*)(?:'|"|`)/gm;
-    const match = pattern.exec(functionText);
+    const pattern = /defaultMessage:\s?(?:'|"|`)(.*)(?:'|"|`)/gm
+    const match = pattern.exec(functionText)
 
-    return match[1];
+    return match[1]
   } catch (err) {
-    return '';
+    return ''
   }
 }
 /**
@@ -66,12 +66,12 @@ function extractFunctionDefaultMessage(functionText) {
  */
 function extractFunctionValues(functionText) {
   try {
-    const pattern = /values:\s?{(.*)}/gm;
-    const match = pattern.exec(functionText);
+    const pattern = /values:\s?{(.*)}/gm
+    const match = pattern.exec(functionText)
 
-    return match[1];
+    return match[1]
   } catch (err) {
-    return {};
+    return {}
   }
 }
 
@@ -82,11 +82,11 @@ function extractFunctionValues(functionText) {
  */
 function extractFunctionDescription(functionText) {
   try {
-    const pattern = /description:\s?(?:'|"|`)(.*)(?:'|"|`)/gm;
-    const match = pattern.exec(functionText);
+    const pattern = /description:\s?(?:'|"|`)(.*)(?:'|"|`)/gm
+    const match = pattern.exec(functionText)
 
-    return match[1];
+    return match[1]
   } catch (err) {
-    return '';
+    return ''
   }
 }

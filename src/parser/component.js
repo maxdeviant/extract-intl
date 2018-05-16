@@ -1,4 +1,4 @@
-import EOL from '../eol';
+import EOL from '../eol'
 
 /**
  * Returns an array containing the message descriptors from the `<FormattedMessage />` component instance in the file contents.
@@ -6,14 +6,14 @@ import EOL from '../eol';
  * @param contents The file contents to search.
  */
 export function parseComponents(contents) {
-  const componentPattern = /<FormattedMessage(.|\r?\n)*?\/>/gm;
-  const matches = contents.match(componentPattern);
+  const componentPattern = /<FormattedMessage(.|\r?\n)*?\/>/gm
+  const matches = contents.match(componentPattern)
 
   if (!matches) {
-    return [];
+    return []
   }
 
-  return matches.map(extractComponentMessageDescriptor);
+  return matches.map(extractComponentMessageDescriptor)
 }
 
 /**
@@ -27,7 +27,7 @@ function extractComponentMessageDescriptor(componentText) {
     defaultMessage: extractComponentDefaultMessage(componentText),
     values: extractComponentValues(componentText),
     description: extractComponentDescription(componentText)
-  };
+  }
 }
 
 /**
@@ -37,12 +37,12 @@ function extractComponentMessageDescriptor(componentText) {
  */
 function extractComponentID(componentText) {
   try {
-    const pattern = /id=\{?(?:'|"|`)([^'"`]*)(?:'|"|`)\}?/gm;
-    const match = pattern.exec(componentText);
+    const pattern = /id=\{?(?:'|"|`)([^'"`]*)(?:'|"|`)\}?/gm
+    const match = pattern.exec(componentText)
 
-    return match[1];
+    return match[1]
   } catch (err) {
-    return '';
+    return ''
   }
 }
 
@@ -53,12 +53,12 @@ function extractComponentID(componentText) {
  */
 function extractComponentDefaultMessage(componentText) {
   try {
-    const pattern = /defaultMessage=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm;
-    const match = pattern.exec(componentText);
+    const pattern = /defaultMessage=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm
+    const match = pattern.exec(componentText)
 
-    return sanitizeDefaultMessage(match[1]);
+    return sanitizeDefaultMessage(match[1])
   } catch (err) {
-    return '';
+    return ''
   }
 }
 
@@ -72,7 +72,7 @@ function sanitizeDefaultMessage(defaultMessage) {
     .split(EOL)
     .map(part => part.trim())
     .filter(part => !!part)
-    .join(' ');
+    .join(' ')
 }
 
 /**
@@ -82,12 +82,12 @@ function sanitizeDefaultMessage(defaultMessage) {
  */
 function extractComponentValues(componentText) {
   try {
-    const pattern = /values={{(.*)}}/gm;
-    const match = pattern.exec(componentText);
+    const pattern = /values={{(.*)}}/gm
+    const match = pattern.exec(componentText)
 
-    return match[1];
+    return match[1]
   } catch (err) {
-    return {};
+    return {}
   }
 }
 
@@ -98,11 +98,11 @@ function extractComponentValues(componentText) {
  */
 function extractComponentDescription(componentText) {
   try {
-    const pattern = /description=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm;
-    const match = pattern.exec(componentText);
+    const pattern = /description=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm
+    const match = pattern.exec(componentText)
 
-    return match[1];
+    return match[1]
   } catch (err) {
-    return '';
+    return ''
   }
 }

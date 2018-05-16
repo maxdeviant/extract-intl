@@ -1,5 +1,5 @@
-import { parseComponents } from './component';
-import { parseFunctions } from './function';
+import { parseComponents } from './component'
+import { parseFunctions } from './function'
 
 /**
  * Returns an object containing all of the translatable messages in the file contents.
@@ -10,23 +10,20 @@ export function parse(contents) {
   const messageDescriptors = [
     ...parseComponents(contents),
     ...parseFunctions(contents)
-  ];
+  ]
 
-  const messages = {};
-  const duplicates = [];
+  const messages = {}
+  const duplicates = []
   messageDescriptors.forEach(messageDescriptor => {
-    const {
-      id: messageId,
-      ...message
-    } = messageDescriptor;
+    const { id: messageId, ...message } = messageDescriptor
     if (messageId in messages) {
-      duplicates.push(messageId);
+      duplicates.push(messageId)
     }
-    messages[messageId] = message;
-  });
+    messages[messageId] = message
+  })
 
   return {
     messages,
     duplicates
-  };
+  }
 }

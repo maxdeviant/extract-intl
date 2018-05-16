@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extract-intl FormattedMessage should extract a message 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "b36a868.simple.1": Object {
+      "defaultMessage": "My List Item",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl FormattedMessage should extract from multiple files 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "3e94d25.a.1": Object {
+      "defaultMessage": "Component A",
+      "description": "",
+      "values": Object {},
+    },
+    "3e94d25.a.2": Object {
+      "defaultMessage": "Hello there!",
+      "description": "",
+      "values": Object {},
+    },
+    "7e0081b.b.1": Object {
+      "defaultMessage": "Component B",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl FormattedMessage should extract multiple messages 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "4c77235.multiple.1": Object {
+      "defaultMessage": "My List Item",
+      "description": "",
+      "values": Object {},
+    },
+    "4c77235.multiple.2": Object {
+      "defaultMessage": "This is my body text.",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl FormattedMessage should extract values 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "0fde777.values.1": Object {
+      "defaultMessage": "My {adjective} List Item",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl FormattedMessage should handle other string literal formats 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "4569682.string-literals.1": Object {
+      "defaultMessage": "This footer is bangin'",
+      "description": "",
+      "values": Object {},
+    },
+    "4569682.string-literals.2": Object {
+      "defaultMessage": "You have {messageCount, plural, one {# new message} other {# new messages}}!",
+      "description": "",
+      "values": Object {},
+    },
+    "4569682.string-literals.3": Object {
+      "defaultMessage": "Copyright (c) 2016",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl formatMessage should extract a message 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "12e95ab.simple.1": Object {
+      "defaultMessage": "Copyright (c) 2016",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl formatMessage should extract from multiple files 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "3455bcd.a.1": Object {
+      "defaultMessage": "Component A",
+      "description": "",
+      "values": Object {},
+    },
+    "3455bcd.a.2": Object {
+      "defaultMessage": "Hello there!",
+      "description": "",
+      "values": Object {},
+    },
+    "fbf0c92.b.1": Object {
+      "defaultMessage": "Component B",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl formatMessage should extract multiple messages 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "3d8bbc8.multiple.1": Object {
+      "defaultMessage": "Why does a footer need a title?",
+      "description": "",
+      "values": Object {},
+    },
+    "3d8bbc8.multiple.2": Object {
+      "defaultMessage": "Copyright (c) 2016",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl formatMessage should extract values 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "fcfa8e7.values.1": Object {
+      "defaultMessage": "Copyright (c) {year}",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl formatMessage should handle other string literal formats 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "be03946.string-literals.1": Object {
+      "defaultMessage": "This footer is bangin'",
+      "description": "",
+      "values": Object {},
+    },
+    "be03946.string-literals.2": Object {
+      "defaultMessage": "Copyright (c) 2016",
+      "description": "",
+      "values": Object {},
+    },
+    "be03946.string-literals.3": Object {
+      "defaultMessage": "ALL RIGHTS RESERVED",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl formatMessage should handle properties in varying orders 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "48ffe03.order.1": Object {
+      "defaultMessage": "UserProfile",
+      "description": "The title for the user profile.",
+      "values": Object {},
+    },
+  },
+}
+`;
+
+exports[`extract-intl formatMessage should handle weird formatting 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "8f52cd4.formatting.1": Object {
+      "defaultMessage": "Copyright (c) 2016",
+      "description": "",
+      "values": Object {},
+    },
+    "8f52cd4.formatting.2": Object {
+      "defaultMessage": "ALL RIGHTS RESERVED",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;

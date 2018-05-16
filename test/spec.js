@@ -1,9 +1,5 @@
-import chai, { expect } from 'chai'
-import chaiAsPromised from 'chai-as-promised'
 import path from 'path'
 import { extractIntl } from '../src/lib'
-
-chai.use(chaiAsPromised)
 
 describe('extract-intl', () => {
   describe('FormattedMessage', () => {
@@ -13,16 +9,7 @@ describe('extract-intl', () => {
         '/fixtures/formatted-message/simple.jsx'
       )
 
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'list_item.title': {
-            defaultMessage: 'My List Item',
-            values: {},
-            description: ''
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
     it('should extract values', () => {
@@ -31,16 +18,7 @@ describe('extract-intl', () => {
         '/fixtures/formatted-message/values.jsx'
       )
 
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'list_item.title': {
-            defaultMessage: 'My {adjective} List Item',
-            values: {},
-            description: ''
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
     it('should extract multiple messages', () => {
@@ -49,21 +27,7 @@ describe('extract-intl', () => {
         '/fixtures/formatted-message/multiple.jsx'
       )
 
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'list_item.title': {
-            defaultMessage: 'My List Item',
-            values: {},
-            description: ''
-          },
-          'list_item.body': {
-            defaultMessage: 'This is my body text.',
-            values: {},
-            description: ''
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
     it('should extract from multiple files', () => {
@@ -72,26 +36,7 @@ describe('extract-intl', () => {
         path.join(__dirname, '/fixtures/formatted-message/b.jsx')
       ]
 
-      return expect(extractIntl(fixturesPaths)).to.eventually.deep.equal({
-        messages: {
-          'component_a.title': {
-            defaultMessage: 'Component A',
-            description: '',
-            values: {}
-          },
-          'component_a.body_text': {
-            defaultMessage: 'Hello there!',
-            description: '',
-            values: {}
-          },
-          'component_b.title': {
-            defaultMessage: 'Component B',
-            description: '',
-            values: {}
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPaths)).resolves.toMatchSnapshot()
     })
 
     it('should handle other string literal formats', () => {
@@ -100,27 +45,7 @@ describe('extract-intl', () => {
         '/fixtures/formatted-message/string-literals.jsx'
       )
 
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'footer.title': {
-            defaultMessage: `This footer is bangin'`,
-            description: '',
-            values: {}
-          },
-          'footer.subtitle': {
-            defaultMessage:
-              'You have {messageCount, plural, one {# new message} other {# new messages}}!',
-            description: '',
-            values: {}
-          },
-          'footer.copyright': {
-            defaultMessage: 'Copyright (c) 2016',
-            description: '',
-            values: {}
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
   })
 
@@ -131,16 +56,7 @@ describe('extract-intl', () => {
         '/fixtures/format-message/simple.jsx'
       )
 
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'footer.text': {
-            defaultMessage: 'Copyright (c) 2016',
-            values: {},
-            description: ''
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
     it('should extract values', () => {
@@ -148,16 +64,7 @@ describe('extract-intl', () => {
         __dirname,
         '/fixtures/format-message/values.jsx'
       )
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'footer.text': {
-            defaultMessage: 'Copyright (c) {year}',
-            values: {},
-            description: ''
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
     it('should extract multiple messages', () => {
@@ -165,21 +72,7 @@ describe('extract-intl', () => {
         __dirname,
         '/fixtures/format-message/multiple.jsx'
       )
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'footer.title': {
-            defaultMessage: 'Why does a footer need a title?',
-            values: {},
-            description: ''
-          },
-          'footer.text': {
-            defaultMessage: 'Copyright (c) 2016',
-            values: {},
-            description: ''
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
     it('should extract from multiple files', () => {
@@ -188,26 +81,7 @@ describe('extract-intl', () => {
         path.join(__dirname, '/fixtures/format-message/b.jsx')
       ]
 
-      return expect(extractIntl(fixturesPaths)).to.eventually.deep.equal({
-        messages: {
-          'component_a.title': {
-            defaultMessage: 'Component A',
-            description: '',
-            values: {}
-          },
-          'component_a.body_text': {
-            defaultMessage: 'Hello there!',
-            description: '',
-            values: {}
-          },
-          'component_b.title': {
-            defaultMessage: 'Component B',
-            description: '',
-            values: {}
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPaths)).resolves.toMatchSnapshot()
     })
 
     it('should handle properties in varying orders', () => {
@@ -216,16 +90,7 @@ describe('extract-intl', () => {
         '/fixtures/format-message/order.jsx'
       )
 
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'user_profile.title': {
-            defaultMessage: 'UserProfile',
-            description: 'The title for the user profile.',
-            values: {}
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
     it('should handle other string literal formats', () => {
@@ -234,26 +99,7 @@ describe('extract-intl', () => {
         '/fixtures/format-message/string-literals.jsx'
       )
 
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'footer.title': {
-            defaultMessage: `This footer is bangin'`,
-            description: '',
-            values: {}
-          },
-          'footer.text': {
-            defaultMessage: 'Copyright (c) 2016',
-            description: '',
-            values: {}
-          },
-          'footer.copyright': {
-            defaultMessage: 'ALL RIGHTS RESERVED',
-            description: '',
-            values: {}
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
     it('should handle weird formatting', () => {
@@ -262,21 +108,7 @@ describe('extract-intl', () => {
         '/fixtures/format-message/formatting.jsx'
       )
 
-      return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
-        messages: {
-          'footer.text': {
-            defaultMessage: 'Copyright (c) 2016',
-            description: '',
-            values: {}
-          },
-          'footer.copyright': {
-            defaultMessage: 'ALL RIGHTS RESERVED',
-            description: '',
-            values: {}
-          }
-        },
-        duplicates: []
-      })
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
   })
 })

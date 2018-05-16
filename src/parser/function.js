@@ -21,26 +21,9 @@ export function parseFunctions(contents) {
  */
 function extractFunctionMessageDescriptor(functionText) {
   return {
-    id: extractFunctionID(functionText),
     defaultMessage: extractFunctionDefaultMessage(functionText),
     values: extractFunctionValues(functionText),
     description: extractFunctionDescription(functionText)
-  }
-}
-
-/**
- * Returns the ID for the `formatMessage` function text.
- *
- * @param functionText The text of the function.
- */
-function extractFunctionID(functionText) {
-  try {
-    const pattern = /id:\s?(?:'|"|`)([^'"`]*)(?:'|"|`)/gm
-    const match = pattern.exec(functionText)
-
-    return match[1]
-  } catch (err) {
-    return ''
   }
 }
 

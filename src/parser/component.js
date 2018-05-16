@@ -23,26 +23,9 @@ export function parseComponents(contents) {
  */
 function extractComponentMessageDescriptor(componentText) {
   return {
-    id: extractComponentID(componentText),
     defaultMessage: extractComponentDefaultMessage(componentText),
     values: extractComponentValues(componentText),
     description: extractComponentDescription(componentText)
-  }
-}
-
-/**
- * Returns the ID for the `<FormattedMessage />` component text.
- *
- * @param componentText The text of the component.
- */
-function extractComponentID(componentText) {
-  try {
-    const pattern = /id=\{?(?:'|"|`)([^'"`]*)(?:'|"|`)\}?/gm
-    const match = pattern.exec(componentText)
-
-    return match[1]
-  } catch (err) {
-    return ''
   }
 }
 

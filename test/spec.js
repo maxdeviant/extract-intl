@@ -1,14 +1,17 @@
 import chai, { expect } from 'chai'
-import chaiAsPromised from 'chai-as-promised';
-import path from 'path';
-import { extractIntl } from '../src/lib';
+import chaiAsPromised from 'chai-as-promised'
+import path from 'path'
+import { extractIntl } from '../src/lib'
 
-chai.use(chaiAsPromised);
+chai.use(chaiAsPromised)
 
 describe('extract-intl', () => {
   describe('FormattedMessage', () => {
     it('should extract a message', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/simple.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/formatted-message/simple.jsx'
+      )
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
@@ -19,11 +22,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should extract values', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/values.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/formatted-message/values.jsx'
+      )
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
@@ -34,11 +40,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should extract multiple messages', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/multiple.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/formatted-message/multiple.jsx'
+      )
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
@@ -54,14 +63,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should extract from multiple files', () => {
       const fixturesPaths = [
         path.join(__dirname, '/fixtures/formatted-message/a.jsx'),
-        path.join(__dirname, '/fixtures/formatted-message/b.jsx'),
-      ];
+        path.join(__dirname, '/fixtures/formatted-message/b.jsx')
+      ]
 
       return expect(extractIntl(fixturesPaths)).to.eventually.deep.equal({
         messages: {
@@ -82,11 +91,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should handle other string literal formats', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/formatted-message/string-literals.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/formatted-message/string-literals.jsx'
+      )
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
@@ -96,7 +108,8 @@ describe('extract-intl', () => {
             values: {}
           },
           'footer.subtitle': {
-            defaultMessage: 'You have {messageCount, plural, one {# new message} other {# new messages}}!',
+            defaultMessage:
+              'You have {messageCount, plural, one {# new message} other {# new messages}}!',
             description: '',
             values: {}
           },
@@ -107,13 +120,16 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
-  });
+      })
+    })
+  })
 
   describe('formatMessage', () => {
     it('should extract a message', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/format-message/simple.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/format-message/simple.jsx'
+      )
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
@@ -124,11 +140,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should extract values', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/format-message/values.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/format-message/values.jsx'
+      )
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
           'footer.text': {
@@ -138,11 +157,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should extract multiple messages', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/format-message/multiple.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/format-message/multiple.jsx'
+      )
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
           'footer.title': {
@@ -157,14 +179,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should extract from multiple files', () => {
       const fixturesPaths = [
         path.join(__dirname, '/fixtures/format-message/a.jsx'),
-        path.join(__dirname, '/fixtures/format-message/b.jsx'),
-      ];
+        path.join(__dirname, '/fixtures/format-message/b.jsx')
+      ]
 
       return expect(extractIntl(fixturesPaths)).to.eventually.deep.equal({
         messages: {
@@ -185,11 +207,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should handle properties in varying orders', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/format-message/order.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/format-message/order.jsx'
+      )
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
@@ -200,11 +225,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should handle other string literal formats', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/format-message/string-literals.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/format-message/string-literals.jsx'
+      )
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
@@ -225,11 +253,14 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
+      })
+    })
 
     it('should handle weird formatting', () => {
-      const fixturesPath = path.join(__dirname, '/fixtures/format-message/formatting.jsx');
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/format-message/formatting.jsx'
+      )
 
       return expect(extractIntl(fixturesPath)).to.eventually.deep.equal({
         messages: {
@@ -245,7 +276,7 @@ describe('extract-intl', () => {
           }
         },
         duplicates: []
-      });
-    });
-  });
-});
+      })
+    })
+  })
+})

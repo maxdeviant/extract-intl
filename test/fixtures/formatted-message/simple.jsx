@@ -1,5 +1,5 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import React from 'react'
+import { FormattedMessage } from 'react-intl'
 
 export default class ListItem extends React.Component {
   render() {
@@ -7,10 +7,11 @@ export default class ListItem extends React.Component {
       <div>
         <h2>
           <FormattedMessage
-            id='list_item.title'
-            defaultMessage='My List Item' />
+            id="list_item.title"
+            defaultMessage="My List Item"
+          />
         </h2>
       </div>
-    );
+    )
   }
 }

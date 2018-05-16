@@ -1,9 +1,9 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
+import React from 'react'
+import { FormattedMessage } from 'react-intl'
 
 export default class ListItem extends React.Component {
   getAdjective() {
-    return 'Awesome';
+    return 'Awesome'
   }
 
   render() {
@@ -11,13 +11,14 @@ export default class ListItem extends React.Component {
       <div>
         <h2>
           <FormattedMessage
-            id='list_item.title'
-            defaultMessage='My {adjective} List Item'
+            id="list_item.title"
+            defaultMessage="My {adjective} List Item"
             values={{
               adjective: this.getAdjective()
-            }}/>
+            }}
+          />
         </h2>
       </div>
-    );
+    )
   }
 }

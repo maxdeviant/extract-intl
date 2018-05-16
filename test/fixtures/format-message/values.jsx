@@ -1,8 +1,10 @@
-import React from 'react';
+import React from 'react'
 
 export default class Footer extends React.Component {
   getFooterText() {
-    const { intl: { formatMessage } } = this.props;
+    const {
+      intl: { formatMessage }
+    } = this.props
 
     return formatMessage({
       id: 'footer.text',
@@ -10,14 +12,10 @@ export default class Footer extends React.Component {
       values: {
         year: Date.now().getFullYear()
       }
-    });
+    })
   }
 
   render() {
-    return (
-        <footer>
-          {this.getFooterText()}
-        </footer>
-    );
+    return <footer>{this.getFooterText()}</footer>
   }
 }

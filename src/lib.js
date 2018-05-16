@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs, { read } from 'fs'
 import { parse } from './parser'
 
 export function extractIntl(files) {
@@ -7,10 +7,14 @@ export function extractIntl(files) {
       files = [files]
     }
 
-    return Promise.all(files.map(readFile))
-      .then(fileContents => {
+    return Promise.all(
+      files.map(filepath =>
+        readFile(filepath).then(contents => parse(filepath, contents))
+      )
+    )
+      .then(files => {
         return resolve(
-          fileContents.map(parse).reduce(
+          files.reduce(
             (accumulator, { messages, duplicates }) => ({
               messages: {
                 ...accumulator.messages,

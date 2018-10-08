@@ -1,4 +1,67 @@
-import EOL from '../eol'
+import * as parser from '@babel/parser'
+import traverse from '@babel/traverse'
+
+function isJSXElement(node) {
+  return node.type === 'JSXElement'
+}
+
+function isFormattedMessage(node) {
+  return (
+    isJSXElement(node) && node.openingElement.name.name === 'FormattedMessage'
+  )
+}
+
+function makeFindPropByName(propName) {
+  return function findPropByName(jsxElementNode) {
+    return jsxElementNode.openingElement.attributes.find(
+      attr => attr.name.name === propName
+    )
+  }
+}
+
+function extractStringValue(propNode) {
+  if (propNode.value.type === 'JSXExpressionContainer') {
+    const expressionNode = propNode.value
+    if (expressionNode.expression.type === 'TemplateLiteral') {
+      return expressionNode.expression.quasis[0].value.raw
+    }
+
+    return expressionNode.expression.value
+  }
+
+  return propNode.value.value
+}
+
+function findId(formattedMessageNode) {
+  const idNode = makeFindPropByName('id')(formattedMessageNode)
+  if (!idNode) {
+    return void 0
+  }
+
+  return extractStringValue(idNode)
+}
+
+function findDefaultMessage(formattedMessageNode) {
+  const defaultMessageNode = makeFindPropByName('defaultMessage')(
+    formattedMessageNode
+  )
+  if (!defaultMessageNode) {
+    return void 0
+  }
+
+  return extractStringValue(defaultMessageNode)
+}
+
+function findDescription(formattedMessageNode) {
+  const descriptionNode = makeFindPropByName('description')(
+    formattedMessageNode
+  )
+  if (!descriptionNode) {
+    return void 0
+  }
+
+  return extractStringValue(descriptionNode)
+}
 
 /**
  * Returns an array containing the message descriptors from the `<FormattedMessage />` component instance in the file contents.
@@ -6,103 +69,26 @@ import EOL from '../eol'
  * @param contents The file contents to search.
  */
 export function parseComponents(contents) {
-  const componentPattern = /<FormattedMessage(.|\r?\n)*?\/>/gm
-  const matches = contents.match(componentPattern)
+  const ast = parser.parse(contents, {
+    sourceType: 'module',
+    plugins: ['jsx']
+  })
 
-  if (!matches) {
-    return []
-  }
+  const messages = []
 
-  return matches.map(extractComponentMessageDescriptor)
-}
+  traverse(ast, {
+    enter(path) {
+      const { node } = path
+      if (isFormattedMessage(node)) {
+        messages.push({
+          id: findId(node) || '',
+          defaultMessage: findDefaultMessage(node) || '',
+          values: {},
+          description: findDescription(node) || ''
+        })
+      }
+    }
+  })
 
-/**
- * Returns the message descriptor for the `<FormattedMessage />` component text.
- *
- * @param componentText The text of the component.
- */
-function extractComponentMessageDescriptor(componentText) {
-  return {
-    id: extractComponentID(componentText),
-    defaultMessage: extractComponentDefaultMessage(componentText),
-    values: extractComponentValues(componentText),
-    description: extractComponentDescription(componentText)
-  }
-}
-
-/**
- * Returns the ID for the `<FormattedMessage />` component text.
- *
- * @param componentText The text of the component.
- */
-function extractComponentID(componentText) {
-  try {
-    const pattern = /id=\{?(?:'|"|`)([^'"`]*)(?:'|"|`)\}?/gm
-    const match = pattern.exec(componentText)
-
-    return match[1]
-  } catch (err) {
-    return ''
-  }
-}
-
-/**
- * Returns the default message for the `<FormattedMessage />` component text.
- *
- * @param componentText The text of the component.
- */
-function extractComponentDefaultMessage(componentText) {
-  try {
-    const pattern = /defaultMessage=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm
-    const match = pattern.exec(componentText)
-
-    return sanitizeDefaultMessage(match[1])
-  } catch (err) {
-    return ''
-  }
-}
-
-/**
- * Returns the default message after it has been sanitized.
- *
- * @param defaultMessage The default message to sanitize.
- */
-function sanitizeDefaultMessage(defaultMessage) {
-  return defaultMessage
-    .split(EOL)
-    .map(part => part.trim())
-    .filter(part => !!part)
-    .join(' ')
-}
-
-/**
- * Returns the values object for the `<FormattedMessage />` component text.
- *
- * @param componentText The text of the component.
- */
-function extractComponentValues(componentText) {
-  try {
-    const pattern = /values={{(.*)}}/gm
-    const match = pattern.exec(componentText)
-
-    return match[1]
-  } catch (err) {
-    return {}
-  }
-}
-
-/**
- * Returns the description for the `<FormattedMessage />` component text.
- *
- * @param componentText The text of the component.
- */
-function extractComponentDescription(componentText) {
-  try {
-    const pattern = /description=\{?(?:'|"|`)(.*)(?:'|"|`)\}?/gm
-    const match = pattern.exec(componentText)
-
-    return match[1]
-  } catch (err) {
-    return ''
-  }
+  return messages
 }

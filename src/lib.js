@@ -1,7 +1,7 @@
 import fs from 'fs'
 import { parse } from './parser'
 
-export function extractIntl(files) {
+export function extractIntl(files, parserOptions) {
   return new Promise((resolve, reject) => {
     if (!Array.isArray(files)) {
       files = [files]
@@ -10,7 +10,7 @@ export function extractIntl(files) {
     return Promise.all(files.map(readFile))
       .then(fileContents => {
         return resolve(
-          fileContents.map(parse).reduce(
+          fileContents.map(contents => parse(contents, parserOptions)).reduce(
             (accumulator, { messages, duplicates }) => ({
               messages: {
                 ...accumulator.messages,

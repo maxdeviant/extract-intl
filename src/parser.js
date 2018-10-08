@@ -71,7 +71,7 @@ function findDescription(formattedMessageNode) {
 export function parse(contents) {
   const ast = parser.parse(contents, {
     sourceType: 'module',
-    plugins: ['jsx']
+    plugins: ['jsx', 'typescript']
   })
 
   const messageDescriptors = []

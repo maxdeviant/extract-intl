@@ -12,6 +12,15 @@ describe('extract-intl', () => {
       return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
+    it('should extract nested messages', () => {
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/formatted-message/nested.jsx'
+      )
+
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
+    })
+
     it('should extract values', () => {
       const fixturesPath = path.join(
         __dirname,

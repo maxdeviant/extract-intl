@@ -54,6 +54,24 @@ Object {
 }
 `;
 
+exports[`extract-intl FormattedMessage should extract nested messages 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "nested.all": Object {
+      "defaultMessage": "ALL",
+      "description": "",
+      "values": Object {},
+    },
+    "nested.title": Object {
+      "defaultMessage": "I understand this will delete {all} my data",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
 exports[`extract-intl FormattedMessage should extract values 1`] = `
 Object {
   "duplicates": Array [],

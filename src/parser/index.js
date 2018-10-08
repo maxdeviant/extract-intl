@@ -1,5 +1,4 @@
 import { parseComponents } from './component'
-import { parseFunctions } from './function'
 
 /**
  * Returns an object containing all of the translatable messages in the file contents.
@@ -7,10 +6,7 @@ import { parseFunctions } from './function'
  * @param contents The file contents to search.
  */
 export function parse(contents) {
-  const messageDescriptors = [
-    ...parseComponents(contents),
-    ...parseFunctions(contents)
-  ]
+  const messageDescriptors = parseComponents(contents)
 
   const messages = {}
   const duplicates = []

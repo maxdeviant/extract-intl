@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [3.0.0] - 2018-10-08
+### Changed
+- Use `@babel/parser` instead of regular expressions.
+
+### Removed
+- Removed CLI.
+- Removed support for extracting `formatMessage`.
+
+### Fixed
+- Fixed parsing of nested `<FormattedMessage />`s.
+
 ## [2.0.0] - 2017-03-16
 ### Removed
 - Remove newline detection in `<FormattedMessage />`.
@@ -30,6 +41,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial release.
 
+[3.0.0]: https://github.com/maxdeviant/extract-intl/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/maxdeviant/extract-intl/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/maxdeviant/extract-intl/compare/v0.0.4...v1.0.0
 [0.0.4]: https://github.com/maxdeviant/extract-intl/compare/v0.0.3...v0.0.4

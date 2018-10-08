@@ -1,5 +1,5 @@
 import path from 'path'
-import { extractIntl } from '../src/lib'
+import extractIntl from '../src'
 
 describe('extract-intl', () => {
   describe('FormattedMessage', () => {

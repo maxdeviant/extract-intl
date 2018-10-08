@@ -64,23 +64,23 @@ function findDescription(formattedMessageNode) {
 }
 
 /**
- * Returns an array containing the message descriptors from the `<FormattedMessage />` component instance in the file contents.
+ * Returns an object containing all of the translatable messages in the file contents.
  *
  * @param contents The file contents to search.
  */
-export function parseComponents(contents) {
+export function parse(contents) {
   const ast = parser.parse(contents, {
     sourceType: 'module',
     plugins: ['jsx']
   })
 
-  const messages = []
+  const messageDescriptors = []
 
   traverse(ast, {
     enter(path) {
       const { node } = path
       if (isFormattedMessage(node)) {
-        messages.push({
+        messageDescriptors.push({
           id: findId(node) || '',
           defaultMessage: findDefaultMessage(node) || '',
           values: {},
@@ -90,5 +90,18 @@ export function parseComponents(contents) {
     }
   })
 
-  return messages
+  const messages = {}
+  const duplicates = []
+  messageDescriptors.forEach(messageDescriptor => {
+    const { id: messageId, ...message } = messageDescriptor
+    if (messageId in messages) {
+      duplicates.push(messageId)
+    }
+    messages[messageId] = message
+  })
+
+  return {
+    messages,
+    duplicates
+  }
 }

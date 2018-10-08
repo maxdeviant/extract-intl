@@ -63,16 +63,22 @@ function findDescription(formattedMessageNode) {
   return extractStringValue(descriptionNode)
 }
 
+export const DEFAULT_PARSER_OPTIONS = {
+  sourceType: 'module',
+  plugins: ['jsx']
+}
+
 /**
  * Returns an object containing all of the translatable messages in the file contents.
  *
  * @param contents The file contents to search.
  */
-export function parse(contents) {
-  const ast = parser.parse(contents, {
-    sourceType: 'module',
-    plugins: ['jsx', 'typescript']
-  })
+export function parse(contents, parserOptions) {
+  if (!parserOptions) {
+    parserOptions = DEFAULT_PARSER_OPTIONS
+  }
+
+  const ast = parser.parse(contents, parserOptions)
 
   const messageDescriptors = []
 

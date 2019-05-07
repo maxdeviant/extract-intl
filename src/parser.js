@@ -98,13 +98,15 @@ export function parse(contents, parserOptions) {
 
   const messages = {}
   const duplicates = []
-  messageDescriptors.forEach(messageDescriptor => {
-    const { id: messageId, ...message } = messageDescriptor
-    if (messageId in messages) {
-      duplicates.push(messageId)
-    }
-    messages[messageId] = message
-  })
+  messageDescriptors
+    .filter(messageDescriptor => !!messageDescriptor.id)
+    .forEach(messageDescriptor => {
+      const { id: messageId, ...message } = messageDescriptor
+      if (messageId in messages) {
+        duplicates.push(messageId)
+      }
+      messages[messageId] = message
+    })
 
   return {
     messages,

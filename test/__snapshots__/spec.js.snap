@@ -112,11 +112,6 @@ exports[`extract-intl FormattedMessage should not fall over on spread props 1`] 
 Object {
   "duplicates": Array [],
   "messages": Object {
-    "": Object {
-      "defaultMessage": "",
-      "description": "",
-      "values": Object {},
-    },
     "spreading_props.title": Object {
       "defaultMessage": "Hello, World",
       "description": "",

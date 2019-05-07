@@ -14,7 +14,7 @@ function isFormattedMessage(node) {
 function makeFindPropByName(propName) {
   return function findPropByName(jsxElementNode) {
     return jsxElementNode.openingElement.attributes.find(
-      attr => attr.name.name === propName
+      attr => attr.name && attr.name.name === propName
     )
   }
 }

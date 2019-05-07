@@ -56,5 +56,14 @@ describe('extract-intl', () => {
 
       return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
+
+    it('should not fall over on spread props', () => {
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/formatted-message/spreading-props.jsx'
+      )
+
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
+    })
   })
 })

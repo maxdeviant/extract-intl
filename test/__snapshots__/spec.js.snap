@@ -120,3 +120,16 @@ Object {
   },
 }
 `;
+
+exports[`extract-intl TypeScript can parse \`as const\` 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "typescript.as_const.message": Object {
+      "defaultMessage": "x = {constExpr}",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;

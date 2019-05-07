@@ -66,4 +66,20 @@ describe('extract-intl', () => {
       return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
   })
+
+  describe('TypeScript', () => {
+    it('can parse `as const`', () => {
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/typescript/as-const.tsx'
+      )
+
+      return expect(
+        extractIntl(fixturesPath, {
+          sourceType: 'module',
+          plugins: ['typescript', 'jsx']
+        })
+      ).resolves.toMatchSnapshot()
+    })
+  })
 })

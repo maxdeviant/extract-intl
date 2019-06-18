@@ -1,13 +1,15 @@
 import * as parser from '@babel/parser'
 import traverse from '@babel/traverse'
 
+const MESSAGE_TAGS = ['FormattedMessage', 'FormattedHTMLMessage']
+
 function isJSXElement(node) {
   return node.type === 'JSXElement'
 }
 
 function isFormattedMessage(node) {
   return (
-    isJSXElement(node) && node.openingElement.name.name === 'FormattedMessage'
+    isJSXElement(node) && MESSAGE_TAGS.includes(node.openingElement.name.name)
   )
 }
 

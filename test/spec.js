@@ -39,6 +39,15 @@ describe('extract-intl', () => {
       return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
     })
 
+    it('should support HTML messages', () => {
+      const fixturesPath = path.join(
+        __dirname,
+        '/fixtures/formatted-message/html.jsx'
+      )
+
+      return expect(extractIntl(fixturesPath)).resolves.toMatchSnapshot()
+    })
+
     it('should extract from multiple files', () => {
       const fixturesPaths = [
         path.join(__dirname, '/fixtures/formatted-message/a.jsx'),

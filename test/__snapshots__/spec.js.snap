@@ -121,6 +121,19 @@ Object {
 }
 `;
 
+exports[`extract-intl FormattedMessage should support HTML messages 1`] = `
+Object {
+  "duplicates": Array [],
+  "messages": Object {
+    "html_component.title": Object {
+      "defaultMessage": "HTML <em>Component</em>",
+      "description": "",
+      "values": Object {},
+    },
+  },
+}
+`;
+
 exports[`extract-intl TypeScript can parse \`as const\` 1`] = `
 Object {
   "duplicates": Array [],
